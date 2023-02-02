@@ -1,0 +1,114 @@
+<div class="tableContainer">
+  <div class="mat-elevation-z2">
+    <div class="spacer">
+      <mat-form-field appearance="standard" class="buscar">
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input autocomplete="off">
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="boton" (click)="add()">Agregar</button>
+    </div>
+
+    <div class="table">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="origen">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="origen"> Origen </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="!element.isEdit">
+              <span class="mobile-label"></span>
+              {{element.origen}}
+            </div>
+            <div *ngIf="element.isEdit">
+              <input type="text" class="form-control" [(ngModel)]="element.origen" style="width: 75%;" />
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="codidi">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="codidi"> Cod. Idioma </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="!element.isEdit">
+              <span class="mobile-label"></span>
+              {{element.codidi}}
+            </div>
+            <div *ngIf="element.isEdit">
+              <input type="text" class="form-control" [(ngModel)]="element.codidi" style="width: 75%;" />
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cota">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="cota"> Cota </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="!element.isEdit">
+              <span class="mobile-label"></span>
+              {{element.cota}}
+            </div>
+            <div *ngIf="element.isEdit">
+              <input type="text" class="form-control" [(ngModel)]="element.cota" style="width: 75%;" />
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="autor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="autor"> Autor </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="!element.isEdit">
+              <span class="mobile-label"></span>
+              {{element.autor}}
+            </div>
+            <div *ngIf="element.isEdit">
+              <input type="text" class="form-control" [(ngModel)]="element.autor" style="width: 75%;" />
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="enlaces">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="enlaces"> Enlaces </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="!element.isEdit">
+              <span class="mobile-label"></span>
+              {{element.enlaces}}
+            </div>
+            <div *ngIf="element.isEdit">
+              <input type="text" class="form-control" [(ngModel)]="element.enlaces" style="width: 75%;" />
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="titulo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="titulo"> Titulo </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="!element.isEdit">
+              <span class="mobile-label"></span>
+              {{element.titulo}}
+            </div>
+            <div *ngIf="element.isEdit">
+              <input type="text" class="form-control" [(ngModel)]="element.titulo" style="width: 75%;" />
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="options" style="width: 130px;">
+          <th class="th" mat-header-cell *matHeaderCellDef style="text-align: right;"> Opciones
+          </th>
+
+          <td mat-cell *matCellDef="let element; let i = index" style="text-align: right;">
+            <div *ngIf=!element.isEdit>
+              <mat-icon class="pointer" (click)="updateUser(element)" style="color: #1f516f;" matTooltip="Editar">edit
+              </mat-icon>
+              <mat-icon class="pointer" style="color: #e2310d;" (click)="delete(i)" matTooltip="Eliminar">delete
+              </mat-icon>
+            </div>
+            <div *ngIf=element.isEdit>
+              <a class="action" (click)="done(element)" matTooltip="Aceptar">
+                <mat-icon>done</mat-icon>
+              </a>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [length]="200" [pageSizeOptions]="[10, 15, 20]" aria-label="Seleccionar página"></mat-paginator>
+    </div>
+  </div>
+</div>
