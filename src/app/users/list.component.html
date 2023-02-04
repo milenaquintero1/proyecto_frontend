@@ -1,0 +1,32 @@
+﻿<h1>Usuarios</h1>
+<button routerLink="add" id="transparent">Agregar Usuario</button>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Usuario</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.username}}</td>
+      <td style="white-space: nowrap">
+        <!-- <a class="editar" routerLink="edit/{{user.id}}">Edit</a> -->
+        <button routerLink="edit/{{user.id}}" id="transparent">Edit</button>
+        <button id="transparent" (click)="deleteUser(user.id)" [disabled]="user.isDeleting">
+          <a *ngIf="user.isDeleting"></a>
+          <a *ngIf="!user.isDeleting">Delete</a>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="!users">
+      <td colspan="4">
+        <span></span>
+      </td>
+    </tr>
+  </tbody>
+</table>

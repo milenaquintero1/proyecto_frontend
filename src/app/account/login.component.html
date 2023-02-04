@@ -1,0 +1,38 @@
+﻿<section>
+  <div class="img-bg">
+    <img src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_trang_dang_nhap/hinh_anh_minh_hoa.jpg">
+  </div>
+  <div class="container">
+    <div class="form">
+      <h2>¡Bienvenido Usuario!</h2>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input-form">
+          <span>Usuario</span>
+          <input type="text" formControlName="username" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Se requiere nombre de usuario</div>
+          </div>
+        </div>
+        <div class="input-form">
+          <span>Contraseña</span>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Se requiere contraseña</div>
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="input-form">
+            <input routerLink="../home" type="submit" value="Ingresar">
+          </div>
+
+          <div class="input-form">
+            <p>¿Aún no está registrado? <a routerLink="../register" class="btn btn-link">Registrar</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

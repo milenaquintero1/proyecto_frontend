@@ -1,0 +1,53 @@
+﻿<section>
+  <div class="img-bg">
+    <img src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_trang_dang_nhap/hinh_anh_minh_hoa.jpg">
+  </div>
+  <div class="container">
+    <div class="form">
+      <h2>Registrarse</h2>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input-form">
+          <span>Nombre</span>
+          <input type="text" formControlName="firstName"
+            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+          <div *ngIf="submitted && f.firstName.errors">
+            <div *ngIf="f.firstName.errors.required">Es necesario introducir el Nombre.</div>
+          </div>
+        </div>
+        <div class="input-form">
+          <span>Apellido</span>
+          <input type="text" formControlName="lastName"
+            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+          <div *ngIf="submitted && f.lastName.errors">
+            <div *ngIf="f.lastName.errors.required">Es necesario introducir el Apellido.</div>
+          </div>
+        </div>
+        <div class="input-form">
+          <span>Usuario</span>
+          <input type="text" formControlName="username"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+          <div *ngIf="submitted && f.username.errors">
+            <div *ngIf="f.username.errors.required">Es necesario introducir el Usuario.</div>
+          </div>
+        </div>
+        <div class="input-form">
+          <span>Contraseña</span>
+          <input type="password" formControlName="password"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors">
+            <div *ngIf="f.password.errors.required">Es necesario introducir la Contraseña.</div>
+            <div *ngIf="f.password.errors.minlength">La contraseña debe ser al menos 6</div>
+          </div>
+        </div>
+
+        <div class="input-form">
+          <input type="submit" value="Registrarse">
+        </div>
+        <div class="input-form">
+          <a routerLink="../login"><input type="submit" value="Cancelar"></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
